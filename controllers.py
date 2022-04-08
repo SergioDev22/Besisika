@@ -11,23 +11,25 @@ class Controller():
             liste_membre.append(
                 {
                     "title":data[i][0]+" "+ data[i][1],
-                    "subtitle" : data[i][3] if data[i][3] else "No Fonction" ,
-                    "image_url": data[i][2],
+                    "subtitle" : data[i][4] if data[i][4] else "No Fonction" ,
+                    "image_url": data[i][3],
                     "buttons": [
                         {
-                            "type": "postback",
+                            "type": "web_url",
                             "title": "FACEBOOK",
-                            "payload":Payload("/voir_facebook", id=data[i][-1], fullname=data[i][0]+" "+ data[i][1])
+                            "url": "https://www.facebook.com/"+data[i][-2] if data[i][-2] else "https://www.facebook.com"
+                            
                         },
                         {
-                            "type": "postback",
-                            "title": "GITHUB",
-                            "payload": Payload("/voir_github", id=data[i][-1], fullname=data[i][0]+" "+ data[i][1])
-                        },
-                        {
-                            "type": "postback",
+                            "type": "web_url",
                             "title": "LINKEDIN",
-                            "payload": Payload("/voir_linkdein", id=data[i][-1], fullname=data[i][0]+" "+ data[i][1])
+                            "url": "https://www.linkedin.com/in/"+data[i][-1] if data[i][-1] else "https://www.linkedin.com"
+                            
+                        },
+                        {
+                            "type": "web_url",
+                            "title": "PORTFOLIO",
+                            "url":"https://portfolio.iteam-s.mg/?u="+data[i][2] if data[i][2] else "https://portfolio.iteam-s.mg/?u=sergio"
                         }
                     ]
                 }

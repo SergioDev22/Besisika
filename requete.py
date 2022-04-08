@@ -10,7 +10,7 @@ class Requete(Model):
     @Model.verif_db
     def get_membres(self):
         req = """
-                SELECT nom, prenom, user_github_pic,fonction,id
+                SELECT nom, prenom, prenom_usuel, user_github_pic, fonction, facebook, linkedin
                 FROM membre
         """
         self.cursor.execute(req)

@@ -34,6 +34,14 @@ domaine_liste = [
 
 projets_title_template = "Voici donc tout nos projets"
 actualites_title_template = "Voici nos actualités"
+nos_projets_title_template = "Voici nos membres"
+nos_contacts_title_template = "Voici nos contacts"
+
+#contact
+adresse = "Ambatoroka IV17JZ Antananarivo Madagascar"
+phone = "+261 34 61 780 78"
+email = "contact@iteams.mg"
+
 
 quick_title_principal = "Que-ce que vous voulez faire maintenant?"
 quick_rep_principal= [
@@ -72,28 +80,38 @@ quick_rep_principal= [
 persistent_menu = [
     {
         "type": "postback",
-        "title": 'NOS DOMAINES',
+        "title": '🔷NOS DOMAINES',
         "payload":"/nos_domaines"
     },
     {
         "type": "postback",
-        "title": 'NOS PROJETS',
+        "title": '💠NOS PROJETS',
         "payload":"/nos_projets"
     },
     {
         "type": "postback",
-        "title": 'NOS ACTUALITÉS',
+        "title": '🌐NOS ACTUALITÉS',
         "payload": "/nos_actualites"
     },
     {
         "type": "postback",
-        "title": 'NOS MEMBRES',
+        "title": '👨🏼NOS MEMBRES',
         "payload": "/nos_membres"
     },
     {
         "type": "postback",
-        "title": 'CONTACT',
+        "title": '☎CONTACT',
         "payload": "/contact"
+    }
+]
+
+
+quick_retour_principal_title = "Revenir au précedent"
+quick_retour_principal = [
+    {
+        "content_type": "text",
+        "title": '⏪RETOUR',
+        "payload": "/retour"
     }
 ]
 

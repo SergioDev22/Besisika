@@ -12,6 +12,7 @@ chat = bot.chat
 
 @ampalibe.command('/')
 def main(sender_id,**extends):
+    print(extends.get("cmd"))
     chat.send_message(sender_id, const.salutation)
     chat.send_message(sender_id,const.description)
     chat.send_media(sender_id, const.url_logo, "image")
@@ -26,14 +27,15 @@ def main(sender_id,**extends):
     
 
 
-#----------COMMANDES QUICK_PRINCIPAL------------------------------#
+#--------------COMMANDES QUICK_PRINCIPAL ET MENU PRINCIPAL-----------------#
 
 @ampalibe.command('/nos_domaines') 
 def domaines(sender_id, **extends):
     chat.send_message(sender_id,const.domaine_title_template)
     chat.send_template(
         sender_id,
-        opt.trt_template_domaine()
+        opt.trt_template_domaine(),
+        quick_rep=const.quick_retour_principal,
     )
 
 @ampalibe.command('/nos_projets')
@@ -43,7 +45,9 @@ def projets(sender_id,**extends):
         sender_id,
         opt.trt_liste_projets(
             req.get_projet()
-        )
+        ),
+        quick_rep=const.quick_retour_principal,
+        next=True
     )
     
 @ampalibe.command('/nos_actualites')
@@ -54,14 +58,13 @@ def actualite(sender_id,**extends):
         opt.trt_liste_actualite(
             req.get_actualites()
         ),
+        quick_rep=const.quick_retour_principal,
         next=True
     )
 
 @ampalibe.command('/nos_membres')
 def membres(sender_id,**extends):
-    # print(req.get_membres())
-    
-    chat.send_message(sender_id,"Voici nos membres")
+    chat.send_message(sender_id,const.nos_projets_title_template)
     chat.send_template(
         sender_id,
         opt.trt_liste_membre(
@@ -72,22 +75,42 @@ def membres(sender_id,**extends):
     
 @ampalibe.command('/contact')
 def contact(sender_id,**extends):
-    chat.send_message(sender_id,"Voici nos contacts")
+    chat.send_message(
+        sender_id,
+        f"\t\tNOS CONTACTS:\n🏢Adresse : {const.adresse}\n☎Téléphone : {const.phone}\n✉Email : {const.email}"
+    )
+    chat.send_quick_reply(
+        sender_id,
+        const.quick_retour_principal,
+        const.quick_retour_principal_title
+    )
+
+#----------------------------------------------------------------------------#
 
 #explication domaine
 @ampalibe.command('/explication')
 def explication(sender_id, explication, **extends):
     chat.send_message(sender_id,explication)
-
-#chek reseaux sociaux
-@ampalibe.command('/voir_facebook')
-def facebook(sender_id, id, fullname, **extends):
-    url_facebook = "https://www.facebook.com" + req.get_url_fb(id)
-    chat.send_message(
+    chat.send_quick_reply(
         sender_id,
-        "le lien de facebook de " + fullname + " est " + url_facebook)
-
+        const.quick_retour_principal,
+        const.quick_retour_principal_title
+    )
 #voir details actualités
 @ampalibe.command('/voir_details')
 def details(sender_id, details, **extends):
     chat.send_message(sender_id, details)
+    chat.send_quick_reply(
+        sender_id,
+        const.quick_retour_principal,
+        const.quick_retour_principal_title
+    )
+
+@ampalibe.command('/retour')
+def retour(sender_id,**extends):
+    chat.send_quick_reply(
+        sender_id, 
+        const.quick_rep_principal,
+        const.quick_title_principal
+        
+    )
