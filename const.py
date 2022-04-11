@@ -1,3 +1,5 @@
+from conf import Configuration
+
 # VARIABLES
 salutation = "Miarahaba tompoka, Tongasoa eto amin'ny BOT MESSENGER iTeam-$"
 
@@ -52,6 +54,38 @@ domaine_liste = [
     ),
 ]
 
+competence_explications_1 = "Nous sommes dotés de riche expérience dans le domaine d'extraction de données \
+sur des sites Web."
+competence_explications_2 = "C'est aussi une des spécialités de la communauté. La communauté a même sortie \
+une librairie open-source en python pour le développement de Chatbot"
+competence_explications_3 = "C'est une des principaux intérêts d'utiliser la technologie, nous réalisons \
+divers scripts pour des tâches répétitives qui peuvent être automatisés."
+competence_explications_4 = "Nous réalisons des applications pour toutes les plateformes : \
+Web, Mobile(Android,ios), Windows, Linux."
+
+competence_liste = [
+    (
+        "Web Scrapping",
+        "https://i2.wp.com/challengingcoder.com/wp-content/uploads/2022/02/Web-Scraping.png?w=1400&ssl=1",
+        competence_explications_1,
+    ),
+    (
+        "ChatBot Messenger",
+        "https://cdn2.iconfinder.com/data/icons/chatbot-line/100/bot_and_messenger-10-512.png",
+        competence_explications_2,
+    ),
+    (
+        "Automatisation & Scripting",
+        "https://www.qualitylogic.com/wp-content/uploads/2014/11/Test-automation-Process-640x640.png",
+        competence_explications_3,
+    ),
+    (
+        "Développement d'application",
+        "https://e7.pngegg.com/pngimages/565/313/png-clipart-web-development-mobile-app-development-app-inventor-for-android-web-design-mobile-app-template-web-design-service.png",
+        competence_explications_4,
+    ),
+]
+
 projets_title_template = "Voici donc tout nos projets"
 actualites_title_template = "Voici nos actualités"
 nos_projets_title_template = "Voici nos membres"
@@ -85,6 +119,12 @@ quick_rep_principal = [
     },
     {
         "content_type": "text",
+        "title": "NOS COMPETENCES",
+        "image_url": f"{Configuration.APP_URL}/asset/img/competence.png",
+        "payload": "/nos_competences",
+    },
+    {
+        "content_type": "text",
         "title": "NOS MEMBRES",
         "image_url": "https://communaute.ebay.fr/t5/image/serverpage/image-id/53895iF052C8AAF31A3905/image-size/original?v=mpbl-1&px=-1",
         "payload": "/nos_membres",
@@ -98,10 +138,7 @@ quick_rep_principal = [
 ]
 
 persistent_menu = [
-    {"type": "postback", "title": "🔷NOS DOMAINES", "payload": "/nos_domaines"},
-    {"type": "postback", "title": "💠NOS PROJETS", "payload": "/nos_projets"},
-    {"type": "postback", "title": "🌐NOS ACTUALITÉS", "payload": "/nos_actualites"},
-    {"type": "postback", "title": "👨🏼NOS MEMBRES", "payload": "/nos_membres"},
+    {"type": "postback", "title": "🔷MENU PRINCIPAL", "payload": "/"},
     {"type": "postback", "title": "☎CONTACT", "payload": "/contact"},
 ]
 

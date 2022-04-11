@@ -120,3 +120,25 @@ class Traitement:
                 else "https://portfolio.iteam-s.mg/?u=sergio",
             },
         ]
+
+    def trt_competence(self):
+        competence_data = const.competence_liste
+        liste_competence = []
+        for i in range(len(competence_data)):
+            liste_competence.append(
+                {
+                    "title": competence_data[i][0].upper(),
+                    "image_url": competence_data[i][1],
+                    "buttons": [
+                        {
+                            "type": "postback",
+                            "title": "EXPLICATION",
+                            "payload": Payload(
+                                "/explicaion_competence",
+                                explication=competence_data[i][-1],
+                            ),
+                        }
+                    ],
+                }
+            )
+        return liste_competence

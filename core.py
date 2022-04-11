@@ -10,10 +10,17 @@ opt = Traitement()
 query = bot.query
 chat = bot.chat
 
+"""
+    get_started method, Utile pour permettre certainnes
+    fonctionnalités pour le bot afin que les utilisateurs
+    les benéficient
 
-@ampalibe.command("/")
-def main(sender_id, **extends):
-    print(extends.get("cmd"))
+"""
+# chat.get_started(payload="/get_started")
+
+
+@ampalibe.command("/get_started")
+def get_started(sender_id, **extends):
     chat.send_message(sender_id, const.salutation)
     chat.send_message(sender_id, const.description)
     chat.send_media(sender_id, const.url_logo, "image")
@@ -24,9 +31,14 @@ def main(sender_id, **extends):
     chat.persistent_menu(sender_id, const.persistent_menu, action="PUT")
 
 
+@ampalibe.command("/")
+def main(sender_id, **extends):
+    chat.send_quick_reply(
+        sender_id, const.quick_rep_principal, const.quick_title_principal
+    )
+
+
 # --------------COMMANDES QUICK_PRINCIPAL ET MENU PRINCIPAL-----------------#
-
-
 @ampalibe.command("/nos_domaines")
 def domaines(sender_id, **extends):
     chat.send_message(sender_id, const.domaine_title_template)
@@ -46,6 +58,11 @@ def projets(sender_id, **extends):
         quick_rep=const.quick_retour_principal,
         next=True,
     )
+
+
+@ampalibe.command("/nos_competences")
+def competence(sender_id, **extends):
+    chat.send_template(sender_id, opt.trt_competence())
 
 
 @ampalibe.command("/nos_actualites")
@@ -86,6 +103,14 @@ def explication(sender_id, explication, **extends):
     )
 
 
+@ampalibe.command("/explicaion_competence")
+def exlpicaion_competence(sender_id, explication, **extends):
+    chat.send_message(sender_id, explication)
+    chat.send_quick_reply(
+        sender_id, const.quick_retour_principal, const.quick_retour_principal_title
+    )
+
+
 # voir details actualités
 @ampalibe.command("/voir_details")
 def details(sender_id, details, **extends):
@@ -110,5 +135,5 @@ def interesse(sender_id, id_membre, **extends):
     chat.send_button(
         sender_id,
         opt.trt_interesse(data_membre),
-        opt.trt_titre_button_interesse(data_membre)
+        opt.trt_titre_button_interesse(data_membre),
     )
